@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: local
+    include: datasource, logging, jwt
+  application:
+    name: backend
+  main:
+    banner-mode: off
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+logging:
+  level:
+    org.hibernate.SQL: debug
+server:
+  port: 8080
