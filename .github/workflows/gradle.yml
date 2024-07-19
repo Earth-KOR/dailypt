@@ -44,6 +44,10 @@ jobs:
             password: H7*EFu$EfB76n
             port: 22
             script: |
+              whoami
+              cd mentoring
+              git pull origin main
+              ./gradlew build
               chmod +x deploy.sh
               sh ./deploy.sh
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
