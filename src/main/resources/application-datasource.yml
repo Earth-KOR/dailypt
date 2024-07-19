@@ -5,7 +5,7 @@ spring:
     datasource:
         hikari:
             driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-            jdbc-url: jdbc:log4jdbc:mysql://127.0.0.1:3306/dailyPT?characterEncoding=utf8&autoReconnect=true&useSSL=false
+            jdbc-url: jdbc:log4jdbc:mysql://127.0.0.1:3306/dailypt?characterEncoding=utf8&autoReconnect=true&useSSL=false
             username: root
             password: password
             pool-name: dailyPT-local
