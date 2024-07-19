@@ -39,9 +39,9 @@ jobs:
       - name: SSH-deploy
         uses: appleboy/ssh-action@master
         with:
-            host: 110.165.17.14
+            host: 110.165.17.174
             username: root
-            password: H7*EFu$EfB76n
+            key: H7*EFu$EfB76n
             port: 22
             script: |
               whoami
