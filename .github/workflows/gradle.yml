@@ -36,6 +36,20 @@ jobs:
       - name: Build with Gradle Wrapper
         run: ./gradlew build
 
+      - name: SSH-deploy
+        uses: appleboy/ssh-action@master
+        with:
+            host: 110.165.17.14
+            username: root
+            password: H7*EFu$EfB76n
+            port: 22
+            script: |
+              whoami
+              cd mentoring
+              git pull origin main
+              ./gradlew build
+              cd build/libs
+              java -jar backed-0.0.1-SNAPSHOT.jar
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
