@@ -41,7 +41,7 @@ jobs:
         with:
             host: 110.165.17.174
             username: root
-            key: H7*EFu$EfB76n
+            password: H7*EFu$EfB76n
             port: 22
             script: |
               whoami
