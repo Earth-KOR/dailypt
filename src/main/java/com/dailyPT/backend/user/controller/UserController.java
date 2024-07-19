@@ -47,5 +47,12 @@ public class UserController {
     public CommonResponse<Object> tokenTest(@AuthenticationPrincipal Long userId) {
         return CommonResponse.success(userId);
     }
+
+    @Operation(summary = "배포 테스트")
+    @GetMapping("/token2")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public CommonResponse<Object> tokenTest2(@AuthenticationPrincipal Long userId) {
+        return CommonResponse.success(userId);
+    }
 }
 
