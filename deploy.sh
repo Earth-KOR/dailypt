@@ -1,20 +1,37 @@
 #!/bin/bash
 
-echo "ACTION DEPLOY START"
+source ~/.bash_profile
 
-# 현재 프로세스 가져오기
-CURRENT_PID=$(lsof -i tcp:8080 | awk 'NR!=1 {print$2}')
+cd ..
 
-# 있으면 종료
-echo $CURRENT_PID
-if [ -z "$CURRENT_PID" ]; then
-        echo "no such app didnt find."
+APP_NAME=backend
+REPOSITORY=`mentoring`
+RELEASE=dev
+
+# 저장소로부터 소스를 업데이트 받습니다.
+git pull
+
+# gradle 빌드와 jar 파일 패키징 작업을 합니다. (작업 완료시 .jar파일 생성)
+sh gradlew build
+
+# .jar 파일 타겟팅
+JAR_NAME=$(ls $REPOSITORY/build/libs | grep jar | head -n 1)
+JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
+
+# 현재 실행중인 서버가 있으면 잡아서 종료 시킵니다.
+CURRENT_PID=$(pgrep -f $APP_NAME)
+if [ -z $CURRENT_PID ]
+then
+  echo ">>>> java process not found."
 else
-        kill -9 $CURRENT_PID
-        echo "killed current pid"
-        sleep 3
+  echo ">>>> PID: $CURRENT_PID kill."
+  kill -15 $CURRENT_PID
+  sleep 15
 fi
-echo "deploy started"
-nohup java -jar build/libs/backend-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev &
-sleep 2
-exit;
+
+# .jar 파일 java 실행합니다.
+echo ">>>> $JAR_PATH java execute."
+nohup java -jar $JAR_PATH --spring.profiles.active=$RELEASE > /dev/null 2> /dev/null < /dev/null &
+sleep 5
+CURRENT_PID=$(pgrep -f $APP_NAME)
+echo ">>>> New PID: $CURRENT_PID"
