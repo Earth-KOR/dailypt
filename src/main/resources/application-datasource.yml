@@ -1,0 +1,52 @@
+spring:
+    config:
+        activate:
+            on-profile: local
+    datasource:
+        hikari:
+            driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+            jdbc-url: jdbc:log4jdbc:mysql://127.0.0.1:3306/dailypt?characterEncoding=utf8&autoReconnect=true&useSSL=false
+            username: root
+            password: password
+            pool-name: dailyPT-local
+            minimum-idle: 2
+            maximum-pool-size: 2
+            validation-timeout: 1000
+            connection-timeout: 3000
+            max-lifetime: 600
+    jpa:
+        database: mysql
+        open-in-view: false
+        hibernate:
+            ddl-auto: update
+        decorator:
+            datasource:
+                p6spy:
+                    enable-logging: true
+---
+spring:
+    config:
+        activate:
+            on-profile: dev
+
+    datasource:
+        hikari:
+            driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+            jdbc-url: jdbc:log4jdbc:mysql://db-oc0i3-kr.vpc-pub-cdb.ntruss.com:3306/dailypt?characterEncoding=utf8&autoReconnect=true&useSSL=false
+            username: user
+            password: password1!
+            pool-name: dailyPT-dev
+            minimum-idle: 20
+            maximum-pool-size: 20
+            validation-timeout: 1000
+            connection-timeout: 6000
+            max-lifetime: 28795000
+    jpa:
+        database: mysql
+        open-in-view: false
+        hibernate:
+            ddl-auto: update
+        decorator:
+            datasource:
+                p6spy:
+                    enable-logging: true

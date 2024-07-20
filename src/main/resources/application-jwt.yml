@@ -1,0 +1,8 @@
+---
+spring:
+  jwt:
+    secret: "ThisIsTestKeyThisIsTestKeyThisIsTestKeyThisIsTestKeyThisIsTestKeyThisIsTestKey"
+    valid-duration: 1d
+    verify-secret: "jwt.verify.secret"
+    address-waiting-verification-duration: 13d
+    verify-warning-duration: 6d
