@@ -60,5 +60,12 @@ public class UserController {
                 "2024-07-31 18:00:00"
         ));
     }
+
+    @Operation(summary = "배포 테스트")
+    @GetMapping("/test")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public CommonResponse<Object> test() {
+        return null;
+    }
 }
 
