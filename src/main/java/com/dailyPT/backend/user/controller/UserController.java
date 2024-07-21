@@ -61,11 +61,11 @@ public class UserController {
         ));
     }
 
-    @Operation(summary = "배포 테스트")
-    @GetMapping("/test")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public CommonResponse<Object> test() {
-        return null;
-    }
+//    @Operation(summary = "배포 테스트")
+//    @GetMapping("/test")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
+//    public CommonResponse<Object> test() {
+//        return null;
+//    }
 }
 
